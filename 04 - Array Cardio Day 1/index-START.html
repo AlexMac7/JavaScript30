@@ -54,6 +54,45 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    const filteredInventors = inventors.filter(inventor => (inventor.year > 1499 && inventor.year < 1600));
+    console.log(filteredInventors);
+
+    const firstLast = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+    console.log('Inventor first and last names', firstLast);
+
+    const oldToYoung = inventors.sort(function (a, b) {
+        return b.year - a.year;
+    });
+    console.table(oldToYoung);
+
+    const totalYears = inventors.reduce(function (accumulator, currentValue) {
+        return accumulator + (currentValue.passed - currentValue.year);
+    }, 0);
+    console.log(totalYears);
+
+    const yearsLived = inventors.sort(function (a, b) {
+        return (a.passed - a.year) - (b.passed - b.year);
+    });
+    console.table(yearsLived);
+
+    const alphabetically = people.sort(function (last, first) {
+        const [aFirst, aLast] = last.split(', '); //destructure the array
+        const [bFirst, bLast] = first.split(', ');
+        return aLast > bLast ? 1 : -1;
+    })
+    console.log(alphabetically);
+
+    const transportation = data.reduce(function (accumulator, currentValue) {
+      if (! accumulator[currentValue]) {
+          accumulator[currentValue] = 0;
+      }
+      accumulator[currentValue]++;
+      return accumulator;
+    }, {})
+
+    console.log(transportation);
+
+    //console.table (super cool), destructuring,
   </script>
 </body>
 </html>
