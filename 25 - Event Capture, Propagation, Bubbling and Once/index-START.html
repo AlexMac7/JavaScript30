@@ -39,7 +39,20 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation(); //stop bubbling / trickling
+  }
+
+  //event bubbling goes up. event is captured and handled by innermost element then propagates out
+  //when capturing (also called trickling), event is captured and handled by the outermost element then propagates in
+  //trickle down, bubble up
+  divs.forEach(div => div.addEventListener('click', logText, {
+      capture: false, //false is default
+      once: true, //run event once
+  }));
 </script>
 </body>
 </html>
