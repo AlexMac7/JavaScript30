@@ -26,7 +26,33 @@
     </div>
 
   <script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    //get all anchor elements
+    const triggers = document.querySelectorAll('a');
+    //create a span element and add a highlight class to it
+    const hightlight = document.createElement('span');
+    hightlight.classList.add('highlight');
+    //add span element to document body
+    document.body.append(hightlight);
+
+    //get the page coordinates for an anchor element
+    //add the width and height style to span element, they are equal to the length and width of our anchor element
+    //add a transform : translate of the anchor element's left and top to the span element
+    function hightlightLink() {
+        const linkCoords = this.getBoundingClientRect(); //this is the anchor element
+        const coords = {
+            width: linkCoords.width,
+            height: linkCoords.height,
+            top: linkCoords.top + window.scrollY,
+            left: linkCoords.left + window.scrollX,
+        };
+
+        hightlight.style.width = `${coords.width}px`;
+        hightlight.style.height = `${coords.height}px`;
+        hightlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+    }
+
+    triggers.forEach(a => a.addEventListener('mouseenter', hightlightLink));
+
   </script>
 </body>
 </html>
