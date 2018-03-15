@@ -54,7 +54,21 @@
   </div>
 
 <script>
+  const nav = document.querySelector('#main');
+  const topOfNav = nav.offsetTop;
 
+  function fixNav() {
+      if (window.scrollY >= topOfNav) {
+          //set body padding top because when adding `position: fixed;` to the nav it no longer takes up space in the document.  So the content below it wants to then fill the now open space.  This resolves the content jump that occurs without the added padding.
+          document.body.style.paddingTop = nav.offsetHeight + 'px';
+          document.body.classList.add('fixed-nav');
+      } else {
+          document.body.style.paddingTop = 0;
+          document.body.classList.remove('fixed-nav');
+      }
+  }
+
+  window.addEventListener('scroll', fixNav);
 </script>
 
 </body>
